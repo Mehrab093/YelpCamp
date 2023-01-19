@@ -39,13 +39,16 @@ mongoose.connect(dbUrl)
 const app = express();
 
 
-app.engine('ejs', ejsMate);
+app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'))
+
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-app.use(express.static(path.join(__dirname, './public')))
-app.use(mongoSanitize({ replaceWith: '_', }),);
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(mongoSanitize({
+    replaceWith: '_'
+}))
 
 const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
 const store = MongoDBStore.create({
