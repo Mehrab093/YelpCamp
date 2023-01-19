@@ -46,7 +46,6 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
-app.use(express.static(path.join(__dirname, 'home.ejs')))
 app.use(mongoSanitize({
     replaceWith: '_'
 }))
@@ -150,7 +149,7 @@ app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/reviews', reviewRoutes);
 
 app.get('/', (req, res) =>{
-    res.render('Home')
+    res.render('home')
 });
 
 app.all('*', (req, res, next) =>{
